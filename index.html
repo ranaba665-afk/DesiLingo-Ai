@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="DesiLingo AI - Learn Hindi and Bengali with AI-powered language practice.">
+<meta name="theme-color" content="#6c4df6">
+<title>DesiLingo AI — Learn Hindi & Bengali</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --primary: #6c4df6;
+  --primary-dark: #5135d9;
+  --secondary: #ff8a4c;
+  --bg: #f7f8fc;
+  --card: #ffffff;
+  --text: #17172b;
+  --muted: #6f7185;
+  --border: #e8e8f0;
+  --green: #19a974;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+  border: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* NAVBAR */
+.navbar {
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-inner {
+  max-width: 1150px;
+  margin: auto;
+  height: 70px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 21px;
+  font-weight: 800;
+}
+
+.logo-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #6c4df6, #9b7cff);
+  color: white;
+  display: grid;
+  place-items: center;
+  font-size: 21px;
+}
+
+.logo span {
+  color: var(--primary);
+}
+
+.nav-links {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+  color: #55576b;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.nav-links a:hover {
+  color: var(--primary);
+}
+
+.nav-btn {
+  background: var(--primary);
+  color: white;
+  padding: 11px 19px;
+  border-radius: 10px;
+  font-weight: 700;
+}
+
+.nav-btn:hover {
+  background: var(--primary-dark);
+}
+
+/* HERO */
+.hero {
+  max-width: 1150px;
+  margin: auto;
+  padding: 70px 20px 55px;
+  display: grid;
+  grid-template-columns: 1.15fr .85fr;
+  gap: 45px;
+  align-items: center;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: #eeeaff;
+  color: var(--primary);
+  padding: 8px 13px;
+  border-radius: 30px;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+
+.hero h1 {
+  font-size: clamp(38px, 5vw, 62px);
+  line-height: 1.06;
+  letter-spacing: -2px;
+  margin-bottom: 20px;
+}
+
+.hero h1 span {
+  color: var(--primary);
+}
+
+.hero-text {
+  color: var(--muted);
+  max-width: 580px;
+  font-size: 18px;
+  margin-bottom: 28px;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.primary-btn {
+  background: var(--primary);
+  color: white;
+  padding: 14px 22px;
+  border-radius: 12px;
+  font-weight: 700;
+  box-shadow: 0 8px 20px rgba(108,77,246,.2);
+}
+
+.primary-btn:hover {
+  background: var(--primary-dark);
+}
+
+.secondary-btn {
+  background: white;
+  color: var(--text);
+  padding: 14px 22px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  font-weight: 700;
+}
+
+/* HERO CARD */
+.hero-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 25px;
+  box-shadow: 0 18px 45px rgba(30,30,60,.08);
+}
+
+.tutor-top {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 22px;
+}
+
+.tutor-avatar {
+  width: 55px;
+  height: 55px;
+  border-radius: 17px;
+  background: #eeeaff;
+  display: grid;
+  place-items: center;
+  font-size: 28px;
+}
+
+.tutor-top h3 {
+  font-size: 17px;
+}
+
+.tutor-top p {
+  font-size: 13px;
+  color: var(--green);
+  font-weight: 700;
+}
+
+.chat {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.message {
+  padding: 13px 15px;
+  border-radius: 15px;
+  font-size: 14px;
+  max-width: 90%;
+}
+
+.message.ai {
+  background: #f1efff;
+  align-self: flex-start;
+}
+
+.message.user {
+  background: var(--primary);
+  color: white;
+  align-self: flex-end;
+}
+
+.practice-btn {
+  width: 100%;
+  margin-top: 18px;
+  padding: 13px;
+  background: #17172b;
+  color: white;
+  border-radius: 11px;
+  font-weight: 700;
+}
+
+/* SECTION */
+.section {
+  max-width: 1150px;
+  margin: auto;
+  padding: 55px 20px;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.section-header h2 {
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+
+.section-header p {
+  color: var(--muted);
+}
+
+/* LANGUAGE CARDS */
+.language-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.language-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 28px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  transition: .2s;
+}
+
+.language-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 35px rgba(30,30,60,.08);
+}
+
+.flag {
+  width: 72px;
+  height: 72px;
+  border-radius: 20px;
+  display: grid;
+  place-items: center;
+  font-size: 38px;
+  background: #fff3e9;
+  flex-shrink: 0;
+}
+
+.language-card:nth-child(2) .flag {
+  background: #eeeaff;
+}
+
+.language-info {
+  flex: 1;
+}
+
+.language-info h3 {
+  font-size: 23px;
+  margin-bottom: 4px;
+}
+
+.language-info p {
+  color: var(--muted);
+  font-size: 14px;
+  margin-bottom: 13px;
+}
+
+.learn-btn {
+  color: var(--primary);
+  font-size: 14px;
+  font-weight: 800;
+  background: none;
+}
+
+/* LEVELS */
+.level-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.level-card {
+  background: white;
+  border: 1px solid var(--border);
+  padding: 24px;
+  border-radius: 18px;
+}
+
+.level-icon {
+  font-size: 30px;
+  margin-bottom: 12px;
+}
+
+.level-card h3 {
+  margin-bottom: 6px;
+}
+
+.level-card p {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* FEATURES */
+.features {
+  background: #17172b;
+  color: white;
+}
+
+.features-inner {
+  max-width: 1150px;
+  margin: auto;
+  padding: 65px 20px;
+}
+
+.features .section-header p {
+  color: #aaaabd;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.feature-card {
+  background: #24243c;
+  border: 1px solid #35354f;
+  padding: 22px;
+  border-radius: 18px;
+}
+
+.feature-card .icon {
+  font-size: 28px;
+  margin-bottom: 14px;
+}
+
+.feature-card h3 {
+  margin-bottom: 6px;
+  font-size: 17px;
+}
+
+.feature-card p {
+  color: #aaaabd;
+  font-size: 13px;
+}
+
+/* PROGRESS */
+.progress-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  padding: 27px;
+  max-width: 720px;
+  margin: auto;
+}
+
+.progress-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.progress-top h3 {
+  font-size: 20px;
+}
+
+.streak {
+  color: var(--secondary);
+  font-weight: 800;
+}
+
+.progress-bar {
+  height: 12px;
+  background: #ececf3;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 35%;
+  background: linear-gradient(90deg, #6c4df6, #9c82ff);
+  border-radius: 20px;
+}
+
+.progress-info {
+  display: flex;
+  justify-content: space-between;
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 9px;
+}
+
+/* CTA */
+.cta {
+  max-width: 1150px;
+  margin: 30px auto 70px;
+  padding: 45px 25px;
+  border-radius: 25px;
+  background: linear-gradient(135deg, #6c4df6, #8065fa);
+  color: white;
+  text-align: center;
+}
+
+.cta h2 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.cta p {
+  opacity: .9;
+  margin-bottom: 22px;
+}
+
+.cta button {
+  background: white;
+  color: var(--primary);
+  padding: 13px 23px;
+  border-radius: 11px;
+  font-weight: 800;
+}
+
+/* FOOTER */
+footer {
+  background: white;
+  border-top: 1px solid var(--border);
+}
+
+.footer-inner {
+  max-width: 1150px;
+  margin: auto;
+  padding: 35px 20px;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.footer-text {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.footer-links {
+  display: flex;
+  gap: 18px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* MOBILE */
+@media (max-width: 850px) {
+  .nav-links a:not(.nav-btn) {
+    display: none;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    padding-top: 45px;
+  }
+
+  .hero-card {
+    max-width: 600px;
+    width: 100%;
+    margin: auto;
+  }
+
+  .level-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .nav-inner {
+    height: 62px;
+    padding: 0 14px;
+  }
+
+  .logo {
+    font-size: 17px;
+  }
+
+  .logo-icon {
+    width: 35px;
+    height: 35px;
+  }
+
+  .nav-btn {
+    padding: 9px 13px;
+    font-size: 12px;
+  }
+
+  .hero {
+    padding: 38px 15px 35px;
+    gap: 28px;
+  }
+
+  .hero h1 {
+    font-size: 40px;
+    letter-spacing: -1.5px;
+  }
+
+  .hero-text {
+    font-size: 16px;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+  }
+
+  .hero-buttons button {
+    width: 100%;
+  }
+
+  .section {
+    padding: 42px 15px;
+  }
+
+  .section-header h2 {
+    font-size: 27px;
+  }
+
+  .language-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .language-card {
+    padding: 20px;
+  }
+
+  .flag {
+    width: 58px;
+    height: 58px;
+    font-size: 30px;
+  }
+
+  .language-info h3 {
+    font-size: 20px;
+  }
+
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .features-inner {
+    padding: 48px 15px;
+  }
+
+  .cta {
+    margin: 15px;
+    margin-bottom: 45px;
+    padding: 38px 20px;
+  }
+
+  .cta h2 {
+    font-size: 27px;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    padding: 28px 15px;
+  }
+
+  .footer-links {
+    flex-wrap: wrap;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="#" class="logo">
+      <div class="logo-icon">🗣️</div>
+      Desi<span>Lingo</span> AI
+    </a>
+
+    <div class="nav-links">
+      <a href="#languages">Languages</a>
+      <a href="#levels">Lessons</a>
+      <a href="#features">Features</a>
+      <button class="nav-btn" onclick="startLearning()">Start Learning</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+
+  <div>
+    <div class="badge">✨ AI Language Learning</div>
+
+    <h1>
+      Speak <span>Hindi & Bengali</span> with Confidence
+    </h1>
+
+    <p class="hero-text">
+      Learn everyday Hindi and Bengali through simple lessons,
+      practical phrases, and AI-powered speaking practice.
+    </p>
+
+    <div class="hero-buttons">
+      <button class="primary-btn" onclick="startLearning()">
+        Start Learning →
+      </button>
+
+      <button class="secondary-btn" onclick="showDemo()">
+        ▶ Try a Demo
+      </button>
+    </div>
+  </div>
+
+  <!-- AI TUTOR PREVIEW -->
+  <div class="hero-card">
+
+    <div class="tutor-top">
+      <div class="tutor-avatar">🤖</div>
+      <div>
+        <h3>AI Language Tutor</h3>
+        <p>● Ready to practice</p>
+      </div>
+    </div>
+
+    <div class="chat">
+      <div class="message ai">
+        Let's practice Hindi! 👋<br>
+        How do you say "Hello" in Hindi?
+      </div>
+
+      <div class="message user">
+        Namaste!
+      </div>
+
+      <div class="message ai">
+        🎉 Great! "Namaste" means Hello.
+      </div>
+    </div>
+
+    <button class="practice-btn" onclick="showDemo()">
+      🎤 Practice Speaking
+    </button>
+
+  </div>
+
+</section>
+
+<!-- LANGUAGES -->
+<section class="section" id="languages">
+
+  <div class="section-header">
+    <h2>Choose Your Language</h2>
+    <p>Start with the language you want to learn.</p>
+  </div>
+
+  <div class="language-grid">
+
+    <div class="language-card">
+      <div class="flag">🇮🇳</div>
+
+      <div class="language-info">
+        <h3>Hindi</h3>
+        <p>Learn everyday Hindi from beginner to advanced.</p>
+        <button class="learn-btn" onclick="chooseLanguage('Hindi')">
+          Learn Hindi →
+        </button>
+      </div>
+    </div>
+
+    <div class="language-card">
+      <div class="flag">🇮🇳</div>
+
+      <div class="language-info">
+        <h3>Bengali</h3>
+        <p>Learn useful Bengali words, phrases and conversations.</p>
+        <button class="learn-btn" onclick="chooseLanguage('Bengali')">
+          Learn Bengali →
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- LEVELS -->
+<section class="section" id="levels">
+
+  <div class="section-header">
+    <h2>Learn at Your Level</h2>
+    <p>Simple lessons designed for every learner.</p>
+  </div>
+
+  <div class="level-grid">
+
+    <div class="level-card">
+      <div class="level-icon">🌱</div>
+      <h3>Beginner</h3>
+      <p>Learn greetings, basic vocabulary and everyday phrases.</p>
+    </div>
+
+    <div class="level-card">
+      <div class="level-icon">🚀</div>
+      <h3>Intermediate</h3>
+      <p>Build sentences and practice real-life conversations.</p>
+    </div>
+
+    <div class="level-card">
+      <div class="level-icon">🏆</div>
+      <h3>Advanced</h3>
+      <p>Improve fluency, expressions and natural conversation.</p>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+
+  <div class="features-inner">
+
+    <div class="section-header">
+      <h2>Learn More Than Words</h2>
+      <p>More powerful learning features will be added in future phases.</p>
+    </div>
+
+    <div class="feature-grid">
+
+      <div class="feature-card">
+        <div class="icon">🤖</div>
+        <h3>AI Tutor</h3>
+        <p>Practice with an intelligent language learning assistant.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="icon">🎤</div>
+        <h3>Speaking Practice</h3>
+        <p>Practice pronunciation and speaking skills.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="icon">💬</div>
+        <h3>Real Conversations</h3>
+        <p>Learn phrases used in everyday situations.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="icon">🔥</div>
+        <h3>Daily Streak</h3>
+        <p>Build a daily learning habit and track your progress.</p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- PROGRESS -->
+<section class="section">
+
+  <div class="section-header">
+    <h2>Your Learning Journey</h2>
+    <p>Your personal progress dashboard will grow in future phases.</p>
+  </div>
+
+  <div class="progress-card">
+
+    <div class="progress-top">
+      <div>
+        <h3>Hindi — Beginner</h3>
+        <span style="color:#6f7185;font-size:13px;">
+          Getting started
+        </span>
+      </div>
+
+      <div class="streak">🔥 3 day streak</div>
+    </div>
+
+    <div class="progress-bar">
+      <div class="progress-fill"></div>
+    </div>
+
+    <div class="progress-info">
+      <span>3 lessons completed</span>
+      <span>35%</span>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- CTA -->
+<section class="cta">
+
+  <h2>Ready to Start Speaking?</h2>
+
+  <p>
+    Begin your Hindi or Bengali learning journey today.
+  </p>
+
+  <button onclick="startLearning()">
+    Start Learning Free →
+  </button>
+
+</section>
+
+<!-- FOOTER -->
+<footer>
+
+  <div class="footer-inner">
+
+    <div class="footer-text">
+      © 2026 DesiLingo AI. Learn languages with confidence.
+    </div>
+
+    <div class="footer-links">
+      <a href="#" onclick="showInfo('About')">About</a>
+      <a href="#" onclick="showInfo('Privacy')">Privacy</a>
+      <a href="#" onclick="showInfo('Terms')">Terms</a>
+      <a href="#" onclick="showInfo('Contact')">Contact</a>
+    </div>
+
+  </div>
+
+</footer>
+
+<script>
+
+function startLearning() {
+  alert(
+    "Welcome to DesiLingo AI! 🎉\n\n" +
+    "Choose Hindi or Bengali to begin.\n\n" +
+    "Full interactive lessons will be added in Phase 2."
+  );
+}
+
+function chooseLanguage(language) {
+  alert(
+    "🇮🇳 " + language + " selected!\n\n" +
+    "Your " + language + " learning course will be available in Phase 2."
+  );
+}
+
+function showDemo() {
+  alert(
+    "🤖 AI Tutor Demo\n\n" +
+    "AI speaking practice, pronunciation feedback and real conversations will be added in Phase 3 and Phase 4."
+  );
+}
+
+function showInfo(page) {
+  alert(
+    page + " page\n\n" +
+    "This page will be completed during the website launch phase."
+  );
+}
+
+</script>
+
+</body>
+</html>
