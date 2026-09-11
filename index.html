@@ -3483,7 +3483,415 @@ behavior:"smooth"
 }
 
 
-function showDemo(){
+/* =========================================
+   PHASE 3.1 — AI TUTOR
+========================================= */
+
+let tutorLanguage =
+localStorage.getItem("desilingo_tutor_language") || "hindi";
+
+
+function selectTutorLanguage(language){
+
+tutorLanguage = language;
+
+localStorage.setItem(
+"desilingo_tutor_language",
+language
+);
+
+document
+.getElementById("tutorHindiBtn")
+.classList.toggle(
+"active",
+language === "hindi"
+);
+
+document
+.getElementById("tutorBengaliBtn")
+.classList.toggle(
+"active",
+language === "bengali"
+);
+
+document
+.getElementById("tutorName")
+.textContent =
+language === "hindi"
+? "Hindi AI Tutor"
+: "Bengali AI Tutor";
+
+const input =
+document.getElementById("aiInput");
+
+input.placeholder =
+language === "hindi"
+? "Ask your Hindi tutor in English..."
+: "Ask your Bengali tutor in English...";
+
+updateSuggestions();
+
+}
+
+
+function updateSuggestions(){
+
+const list =
+document.getElementById("suggestionList");
+
+if(!list) return;
+
+list.innerHTML = `
+
+<button
+class="suggestion-btn"
+onclick="useSuggestion('How do I say Hello?')">
+
+How do I say Hello?
+
+</button>
+
+<button
+class="suggestion-btn"
+onclick="useSuggestion('Translate: I am hungry')">
+
+Translate: I am hungry
+
+</button>
+
+<button
+class="suggestion-btn"
+onclick="useSuggestion('Correct my sentence')">
+
+Correct my sentence
+
+</button>
+
+`;
+
+}
+
+
+function addTutorMessage(text,type){
+
+const messages =
+document.getElementById("aiMessages");
+
+const message =
+document.createElement("div");
+
+message.className =
+"ai-message " + type;
+
+if(type === "bot"){
+
+message.innerHTML =
+"<strong>🤖 AI Tutor</strong>" + text;
+
+}else{
+
+message.textContent = text;
+
+}
+
+messages.appendChild(message);
+
+messages.scrollTop =
+messages.scrollHeight;
+
+}
+
+
+function sendTutorMessage(){
+
+const input =
+document.getElementById("aiInput");
+
+const text =
+input.value.trim();
+
+if(!text) return;
+
+addTutorMessage(
+text,
+"user"
+);
+
+input.value = "";
+
+setTimeout(()=>{
+
+const response =
+getDemoTutorResponse(text);
+
+addTutorMessage(
+response,
+"bot"
+);
+
+},500);
+
+}
+
+
+function getDemoTutorResponse(text){
+
+const lower =
+text.toLowerCase();
+
+
+if(
+lower.includes("hello") ||
+lower.includes("hi")
+){
+
+if(tutorLanguage === "hindi"){
+
+return `
+
+You can say:
+
+<b>नमस्ते</b>
+
+<br>
+
+<i>Namaste</i>
+
+<br>
+
+It means "Hello" or "Greetings".
+
+`;
+
+}else{
+
+return `
+
+You can say:
+
+<b>নমস্কার</b>
+
+<br>
+
+<i>Nomoshkar</i>
+
+<br>
+
+It means "Hello" or "Greetings".
+
+`;
+
+}
+
+}
+
+
+if(
+lower.includes("hungry") ||
+lower.includes("food")
+){
+
+if(tutorLanguage === "hindi"){
+
+return `
+
+You can say:
+
+<b>मुझे खाना चाहिए।</b>
+
+<br>
+
+<i>Mujhe khaana chahiye.</i>
+
+<br>
+
+It means "I want food."
+
+`;
+
+}else{
+
+return `
+
+You can say:
+
+<b>আমি খাবার চাই।</b>
+
+<br>
+
+<i>Ami khabar chai.</i>
+
+<br>
+
+It means "I want food."
+
+`;
+
+}
+
+}
+
+
+if(
+lower.includes("correct") ||
+lower.includes("sentence")
+){
+
+return `
+
+Sure! 👍
+
+In Phase 3.2, I will analyze your sentence and provide:
+
+<br><br>
+
+✓ Corrected sentence<br>
+✓ Natural version<br>
+✓ Grammar explanation<br>
+✓ Translation<br>
+✓ Pronunciation help
+
+`;
+
+}
+
+
+if(
+lower.includes("thank")
+){
+
+if(tutorLanguage === "hindi"){
+
+return `
+
+"Thank you" in Hindi is:
+
+<b>धन्यवाद</b>
+
+<br>
+
+<i>Dhanyavaad</i>
+
+`;
+
+}else{
+
+return `
+
+"Thank you" in Bengali is:
+
+<b>ধন্যবাদ</b>
+
+<br>
+
+<i>Dhonnobad</i>
+
+`;
+
+}
+
+}
+
+
+return `
+
+Great question! 😊
+
+I'm currently running in <b>Demo Mode</b>.
+
+In Phase 3.2, I'll be connected to a real AI model so I can understand your question and create a personalized answer.
+
+For now, try asking:
+
+<br><br>
+
+<b>"How do I say Hello?"</b>
+
+<br>
+
+<b>"Translate: I am hungry"</b>
+
+<br>
+
+<b>"Correct my sentence"</b>
+
+`;
+
+}
+
+
+function useSuggestion(text){
+
+const input =
+document.getElementById("aiInput");
+
+input.value = text;
+
+input.focus();
+
+}
+
+
+function aiTool(type){
+
+let message = "";
+
+
+if(type === "translate"){
+
+message =
+"Translate this sentence into my target language.";
+
+}
+
+
+if(type === "grammar"){
+
+message =
+"Explain the grammar of this language simply.";
+
+}
+
+
+if(type === "correct"){
+
+message =
+"Correct my sentence.";
+
+}
+
+
+document
+.getElementById("aiInput")
+.value = message;
+
+document
+.getElementById("aiInput")
+.focus();
+
+}
+
+
+document
+.getElementById("aiInput")
+.addEventListener(
+"keydown",
+function(event){
+
+if(event.key === "Enter"){
+
+sendTutorMessage();
+
+}
+
+});
+
+
+selectTutorLanguage(
+tutorLanguage
+);
+  
+  function showDemo(){
 
 document
 .getElementById("aiTutor")
