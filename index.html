@@ -3629,6 +3629,18 @@ response,
 "bot"
 );
 
+/* 🔊 AI TUTOR VOICE */
+
+let voiceText =
+response
+.replace(/<br\s*\/?>/gi, " ")
+.replace(/<[^>]*>/g, "")
+.replace(/&quot;/g, '"')
+.replace(/&amp;/g, "&")
+.trim();
+
+speakText(voiceText);
+
 },500);
 
 }
