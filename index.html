@@ -3,630 +3,1245 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="DesiLingo AI - Learn Hindi and Bengali with AI-powered language practice.">
+
+<meta name="description"
+content="DesiLingo AI - Learn Hindi and Bengali through practical lessons, pronunciation and interactive quizzes.">
+
 <meta name="theme-color" content="#6c4df6">
+
 <title>DesiLingo AI — Learn Hindi & Bengali</title>
 
 <style>
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
-:root {
-  --primary: #6c4df6;
-  --primary-dark: #5135d9;
-  --secondary: #ff8a4c;
-  --bg: #f7f8fc;
-  --card: #ffffff;
-  --text: #17172b;
-  --muted: #6f7185;
-  --border: #e8e8f0;
-  --green: #19a974;
+:root{
+  --primary:#6c4df6;
+  --primary-dark:#5135d9;
+  --secondary:#ff8a4c;
+  --bg:#f7f8fc;
+  --card:#ffffff;
+  --text:#17172b;
+  --muted:#6f7185;
+  --border:#e8e8f0;
+  --green:#19a974;
+  --red:#e05252;
 }
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.5;
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.5;
 }
 
-button {
-  font: inherit;
-  cursor: pointer;
-  border: none;
+button{
+  font:inherit;
+  cursor:pointer;
+  border:none;
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
+a{
+  text-decoration:none;
+  color:inherit;
 }
 
 /* NAVBAR */
-.navbar {
-  background: #fff;
-  border-bottom: 1px solid var(--border);
-  position: sticky;
-  top: 0;
-  z-index: 100;
+
+.navbar{
+  background:#fff;
+  border-bottom:1px solid var(--border);
+  position:sticky;
+  top:0;
+  z-index:100;
 }
 
-.nav-inner {
-  max-width: 1150px;
-  margin: auto;
-  height: 70px;
-  padding: 0 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.nav-inner{
+  max-width:1150px;
+  margin:auto;
+  height:70px;
+  padding:0 20px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
 }
 
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 21px;
-  font-weight: 800;
+.logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+
+  font-size:21px;
+  font-weight:800;
 }
 
-.logo-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 12px;
-  background: linear-gradient(135deg, #6c4df6, #9b7cff);
-  color: white;
-  display: grid;
-  place-items: center;
-  font-size: 21px;
+.logo-icon{
+  width:40px;
+  height:40px;
+
+  border-radius:12px;
+
+  background:linear-gradient(
+    135deg,
+    #6c4df6,
+    #9b7cff
+  );
+
+  color:white;
+
+  display:grid;
+  place-items:center;
+
+  font-size:21px;
 }
 
-.logo span {
-  color: var(--primary);
+.logo span{
+  color:var(--primary);
 }
 
-.nav-links {
-  display: flex;
-  gap: 28px;
-  align-items: center;
-  color: #55576b;
-  font-size: 14px;
-  font-weight: 600;
+.nav-right{
+  display:flex;
+  align-items:center;
+  gap:10px;
 }
 
-.nav-links a:hover {
-  color: var(--primary);
-}
+.xp-badge{
+  background:#eeeaff;
+  color:var(--primary);
 
-.nav-btn {
-  background: var(--primary);
-  color: white;
-  padding: 11px 19px;
-  border-radius: 10px;
-  font-weight: 700;
-}
+  padding:9px 13px;
 
-.nav-btn:hover {
-  background: var(--primary-dark);
+  border-radius:20px;
+
+  font-size:13px;
+  font-weight:800;
 }
 
 /* HERO */
-.hero {
-  max-width: 1150px;
-  margin: auto;
-  padding: 70px 20px 55px;
-  display: grid;
-  grid-template-columns: 1.15fr .85fr;
-  gap: 45px;
-  align-items: center;
+
+.hero{
+  max-width:1150px;
+  margin:auto;
+
+  padding:65px 20px 45px;
+
+  display:grid;
+
+  grid-template-columns:1.15fr .85fr;
+
+  gap:45px;
+
+  align-items:center;
 }
 
-.badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  background: #eeeaff;
-  color: var(--primary);
-  padding: 8px 13px;
-  border-radius: 30px;
-  font-size: 13px;
-  font-weight: 700;
-  margin-bottom: 18px;
+.badge{
+  display:inline-flex;
+
+  align-items:center;
+
+  gap:7px;
+
+  background:#eeeaff;
+
+  color:var(--primary);
+
+  padding:8px 13px;
+
+  border-radius:30px;
+
+  font-size:13px;
+
+  font-weight:700;
+
+  margin-bottom:18px;
 }
 
-.hero h1 {
-  font-size: clamp(38px, 5vw, 62px);
-  line-height: 1.06;
-  letter-spacing: -2px;
-  margin-bottom: 20px;
+.hero h1{
+  font-size:clamp(38px,5vw,62px);
+
+  line-height:1.06;
+
+  letter-spacing:-2px;
+
+  margin-bottom:20px;
 }
 
-.hero h1 span {
-  color: var(--primary);
+.hero h1 span{
+  color:var(--primary);
 }
 
-.hero-text {
-  color: var(--muted);
-  max-width: 580px;
-  font-size: 18px;
-  margin-bottom: 28px;
+.hero-text{
+  color:var(--muted);
+
+  max-width:580px;
+
+  font-size:18px;
+
+  margin-bottom:28px;
 }
 
-.hero-buttons {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
+.hero-buttons{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
 }
 
-.primary-btn {
-  background: var(--primary);
-  color: white;
-  padding: 14px 22px;
-  border-radius: 12px;
-  font-weight: 700;
-  box-shadow: 0 8px 20px rgba(108,77,246,.2);
+.primary-btn{
+  background:var(--primary);
+
+  color:white;
+
+  padding:14px 22px;
+
+  border-radius:12px;
+
+  font-weight:700;
+
+  box-shadow:
+  0 8px 20px rgba(108,77,246,.2);
 }
 
-.primary-btn:hover {
-  background: var(--primary-dark);
+.primary-btn:hover{
+  background:var(--primary-dark);
 }
 
-.secondary-btn {
-  background: white;
-  color: var(--text);
-  padding: 14px 22px;
-  border-radius: 12px;
-  border: 1px solid var(--border);
-  font-weight: 700;
+.secondary-btn{
+  background:white;
+
+  color:var(--text);
+
+  padding:14px 22px;
+
+  border-radius:12px;
+
+  border:1px solid var(--border);
+
+  font-weight:700;
 }
 
-/* HERO CARD */
-.hero-card {
-  background: white;
-  border: 1px solid var(--border);
-  border-radius: 24px;
-  padding: 25px;
-  box-shadow: 0 18px 45px rgba(30,30,60,.08);
+/* AI CARD */
+
+.hero-card{
+  background:white;
+
+  border:1px solid var(--border);
+
+  border-radius:24px;
+
+  padding:25px;
+
+  box-shadow:
+  0 18px 45px rgba(30,30,60,.08);
 }
 
-.tutor-top {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin-bottom: 22px;
+.tutor-top{
+  display:flex;
+
+  align-items:center;
+
+  gap:14px;
+
+  margin-bottom:22px;
 }
 
-.tutor-avatar {
-  width: 55px;
-  height: 55px;
-  border-radius: 17px;
-  background: #eeeaff;
-  display: grid;
-  place-items: center;
-  font-size: 28px;
+.tutor-avatar{
+  width:55px;
+  height:55px;
+
+  border-radius:17px;
+
+  background:#eeeaff;
+
+  display:grid;
+  place-items:center;
+
+  font-size:28px;
 }
 
-.tutor-top h3 {
-  font-size: 17px;
+.tutor-top h3{
+  font-size:17px;
 }
 
-.tutor-top p {
-  font-size: 13px;
-  color: var(--green);
-  font-weight: 700;
+.tutor-top p{
+  font-size:13px;
+
+  color:var(--green);
+
+  font-weight:700;
 }
 
-.chat {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+.chat{
+  display:flex;
+
+  flex-direction:column;
+
+  gap:12px;
 }
 
-.message {
-  padding: 13px 15px;
-  border-radius: 15px;
-  font-size: 14px;
-  max-width: 90%;
+.message{
+  padding:13px 15px;
+
+  border-radius:15px;
+
+  font-size:14px;
+
+  max-width:90%;
 }
 
-.message.ai {
-  background: #f1efff;
-  align-self: flex-start;
+.message.ai{
+  background:#f1efff;
+
+  align-self:flex-start;
 }
 
-.message.user {
-  background: var(--primary);
-  color: white;
-  align-self: flex-end;
+.message.user{
+  background:var(--primary);
+
+  color:white;
+
+  align-self:flex-end;
 }
 
-.practice-btn {
-  width: 100%;
-  margin-top: 18px;
-  padding: 13px;
-  background: #17172b;
-  color: white;
-  border-radius: 11px;
-  font-weight: 700;
+.practice-btn{
+  width:100%;
+
+  margin-top:18px;
+
+  padding:13px;
+
+  background:#17172b;
+
+  color:white;
+
+  border-radius:11px;
+
+  font-weight:700;
 }
 
 /* SECTION */
-.section {
-  max-width: 1150px;
-  margin: auto;
-  padding: 55px 20px;
+
+.section{
+  max-width:1150px;
+
+  margin:auto;
+
+  padding:50px 20px;
 }
 
-.section-header {
-  text-align: center;
-  margin-bottom: 30px;
+.section-header{
+  text-align:center;
+
+  margin-bottom:30px;
 }
 
-.section-header h2 {
-  font-size: 32px;
-  margin-bottom: 8px;
+.section-header h2{
+  font-size:32px;
+
+  margin-bottom:8px;
 }
 
-.section-header p {
-  color: var(--muted);
+.section-header p{
+  color:var(--muted);
 }
 
-/* LANGUAGE CARDS */
-.language-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+/* LANGUAGE */
+
+.language-grid{
+  display:grid;
+
+  grid-template-columns:repeat(2,1fr);
+
+  gap:20px;
 }
 
-.language-card {
-  background: white;
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 28px;
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  transition: .2s;
+.language-card{
+  background:white;
+
+  border:1px solid var(--border);
+
+  border-radius:20px;
+
+  padding:28px;
+
+  display:flex;
+
+  align-items:center;
+
+  gap:20px;
+
+  transition:.2s;
 }
 
-.language-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 15px 35px rgba(30,30,60,.08);
+.language-card:hover{
+  transform:translateY(-4px);
+
+  box-shadow:
+  0 15px 35px rgba(30,30,60,.08);
 }
 
-.flag {
-  width: 72px;
-  height: 72px;
-  border-radius: 20px;
-  display: grid;
-  place-items: center;
-  font-size: 38px;
-  background: #fff3e9;
-  flex-shrink: 0;
+.flag{
+  width:72px;
+  height:72px;
+
+  border-radius:20px;
+
+  display:grid;
+  place-items:center;
+
+  font-size:38px;
+
+  background:#fff3e9;
+
+  flex-shrink:0;
 }
 
-.language-card:nth-child(2) .flag {
-  background: #eeeaff;
+.language-card:nth-child(2) .flag{
+  background:#eeeaff;
 }
 
-.language-info {
-  flex: 1;
+.language-info{
+  flex:1;
 }
 
-.language-info h3 {
-  font-size: 23px;
-  margin-bottom: 4px;
+.language-info h3{
+  font-size:23px;
+
+  margin-bottom:4px;
 }
 
-.language-info p {
-  color: var(--muted);
-  font-size: 14px;
-  margin-bottom: 13px;
+.language-info p{
+  color:var(--muted);
+
+  font-size:14px;
+
+  margin-bottom:13px;
 }
 
-.learn-btn {
-  color: var(--primary);
-  font-size: 14px;
-  font-weight: 800;
-  background: none;
+.learn-btn{
+  color:var(--primary);
+
+  font-size:14px;
+
+  font-weight:800;
+
+  background:none;
 }
 
-/* LEVELS */
-.level-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
+/* LESSON AREA */
+
+.lesson-area{
+  background:#f0eff8;
+
+  border-top:1px solid var(--border);
+
+  border-bottom:1px solid var(--border);
 }
 
-.level-card {
-  background: white;
-  border: 1px solid var(--border);
-  padding: 24px;
-  border-radius: 18px;
+.lesson-wrapper{
+  max-width:1150px;
+
+  margin:auto;
+
+  padding:55px 20px;
 }
 
-.level-icon {
-  font-size: 30px;
-  margin-bottom: 12px;
+.lesson-top{
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  gap:20px;
+
+  margin-bottom:22px;
 }
 
-.level-card h3 {
-  margin-bottom: 6px;
+.lesson-top h2{
+  font-size:30px;
 }
 
-.level-card p {
-  color: var(--muted);
-  font-size: 14px;
+.lesson-top p{
+  color:var(--muted);
+
+  font-size:14px;
+
+  margin-top:4px;
 }
 
-/* FEATURES */
-.features {
-  background: #17172b;
-  color: white;
+/* LANGUAGE SWITCH */
+
+.language-switch{
+  background:white;
+
+  border:1px solid var(--border);
+
+  padding:4px;
+
+  border-radius:12px;
+
+  display:flex;
 }
 
-.features-inner {
-  max-width: 1150px;
-  margin: auto;
-  padding: 65px 20px;
+.language-switch button{
+  background:transparent;
+
+  padding:9px 14px;
+
+  border-radius:9px;
+
+  font-weight:700;
+
+  color:var(--muted);
 }
 
-.features .section-header p {
-  color: #aaaabd;
-}
+.language-switch button.active{
+  background:var(--primary);
 
-.feature-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-}
-
-.feature-card {
-  background: #24243c;
-  border: 1px solid #35354f;
-  padding: 22px;
-  border-radius: 18px;
-}
-
-.feature-card .icon {
-  font-size: 28px;
-  margin-bottom: 14px;
-}
-
-.feature-card h3 {
-  margin-bottom: 6px;
-  font-size: 17px;
-}
-
-.feature-card p {
-  color: #aaaabd;
-  font-size: 13px;
+  color:white;
 }
 
 /* PROGRESS */
-.progress-card {
-  background: white;
-  border: 1px solid var(--border);
-  border-radius: 22px;
-  padding: 27px;
-  max-width: 720px;
-  margin: auto;
+
+.course-progress{
+  background:white;
+
+  border:1px solid var(--border);
+
+  border-radius:17px;
+
+  padding:16px;
+
+  margin-bottom:22px;
 }
 
-.progress-top {
-  display: flex;
-  justify-content: space-between;
-  gap: 15px;
-  margin-bottom: 20px;
+.progress-header{
+  display:flex;
+
+  justify-content:space-between;
+
+  margin-bottom:9px;
+
+  font-size:13px;
+
+  font-weight:700;
 }
 
-.progress-top h3 {
-  font-size: 20px;
+.progress-header span:last-child{
+  color:var(--primary);
 }
 
-.streak {
-  color: var(--secondary);
-  font-weight: 800;
+.progress-bar{
+  height:10px;
+
+  background:#ececf3;
+
+  border-radius:20px;
+
+  overflow:hidden;
 }
 
-.progress-bar {
-  height: 12px;
-  background: #ececf3;
-  border-radius: 20px;
-  overflow: hidden;
+.progress-fill{
+  height:100%;
+
+  width:0%;
+
+  background:
+  linear-gradient(
+    90deg,
+    #6c4df6,
+    #9c82ff
+  );
+
+  border-radius:20px;
+
+  transition:.4s;
 }
 
-.progress-fill {
-  height: 100%;
-  width: 35%;
-  background: linear-gradient(90deg, #6c4df6, #9c82ff);
-  border-radius: 20px;
+/* LESSON LAYOUT */
+
+.lesson-layout{
+  display:grid;
+
+  grid-template-columns:250px 1fr;
+
+  gap:20px;
 }
 
-.progress-info {
-  display: flex;
-  justify-content: space-between;
-  color: var(--muted);
-  font-size: 13px;
-  margin-top: 9px;
+/* SIDEBAR */
+
+.lesson-sidebar{
+  background:white;
+
+  border:1px solid var(--border);
+
+  border-radius:18px;
+
+  padding:10px;
+
+  height:max-content;
+}
+
+.lesson-sidebar h3{
+  padding:10px;
+
+  font-size:15px;
+}
+
+.lesson-nav{
+  width:100%;
+
+  background:transparent;
+
+  text-align:left;
+
+  padding:12px;
+
+  border-radius:11px;
+
+  margin-bottom:4px;
+
+  display:flex;
+
+  align-items:center;
+
+  gap:9px;
+
+  color:#55576b;
+
+  font-weight:700;
+}
+
+.lesson-nav:hover{
+  background:#f0edff;
+
+  color:var(--primary);
+}
+
+.lesson-nav.active{
+  background:#eeeaff;
+
+  color:var(--primary);
+}
+
+.lesson-nav.completed{
+  color:var(--green);
+}
+
+.lesson-number{
+  width:27px;
+  height:27px;
+
+  border-radius:8px;
+
+  background:#f2f2f7;
+
+  display:grid;
+  place-items:center;
+
+  font-size:12px;
+
+  flex-shrink:0;
+}
+
+.lesson-nav.active .lesson-number{
+  background:var(--primary);
+
+  color:white;
+}
+
+.lesson-nav.completed .lesson-number{
+  background:#dff9ee;
+
+  color:var(--green);
+}
+
+/* LESSON CARD */
+
+.lesson-card{
+  background:white;
+
+  border:1px solid var(--border);
+
+  border-radius:20px;
+
+  padding:25px;
+}
+
+.lesson-heading{
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:flex-start;
+
+  gap:15px;
+
+  margin-bottom:20px;
+}
+
+.lesson-heading h2{
+  font-size:26px;
+}
+
+.lesson-heading p{
+  color:var(--muted);
+
+  font-size:14px;
+
+  margin-top:4px;
+}
+
+.level-badge{
+  background:#e9fff6;
+
+  color:var(--green);
+
+  padding:7px 10px;
+
+  border-radius:20px;
+
+  font-size:11px;
+
+  font-weight:800;
+
+  white-space:nowrap;
+}
+
+/* PHRASES */
+
+.phrase-list{
+  display:grid;
+
+  gap:12px;
+}
+
+.phrase-card{
+  border:1px solid var(--border);
+
+  border-radius:15px;
+
+  padding:15px;
+
+  display:grid;
+
+  grid-template-columns:1fr auto;
+
+  gap:12px;
+
+  align-items:center;
+}
+
+.phrase-text{
+  font-size:23px;
+
+  font-weight:800;
+}
+
+.phrase-pronunciation{
+  color:var(--primary);
+
+  font-size:14px;
+
+  margin-top:3px;
+
+  font-style:italic;
+}
+
+.phrase-meaning{
+  color:var(--muted);
+
+  font-size:13px;
+
+  margin-top:4px;
+}
+
+.speak-btn{
+  width:44px;
+  height:44px;
+
+  border-radius:12px;
+
+  background:#eeeaff;
+
+  color:var(--primary);
+
+  font-size:19px;
+}
+
+.speak-btn:hover{
+  background:var(--primary);
+
+  color:white;
+}
+
+/* QUIZ */
+
+.quiz{
+  margin-top:22px;
+
+  background:#17172b;
+
+  color:white;
+
+  border-radius:17px;
+
+  padding:20px;
+}
+
+.quiz h3{
+  font-size:18px;
+
+  margin-bottom:5px;
+}
+
+.quiz-sub{
+  color:#aaaabd;
+
+  font-size:13px;
+
+  margin-bottom:15px;
+}
+
+.answer{
+  width:100%;
+
+  background:white;
+
+  color:#17172b;
+
+  padding:12px 14px;
+
+  border-radius:10px;
+
+  text-align:left;
+
+  margin-bottom:9px;
+
+  font-weight:700;
+
+  transition:.15s;
+}
+
+.answer:hover{
+  background:#eeeaff;
+}
+
+.answer.correct{
+  background:#dff9ee;
+
+  color:#087d56;
+}
+
+.answer.wrong{
+  background:#ffe6e6;
+
+  color:#b83d3d;
+}
+
+.next-btn{
+  width:100%;
+
+  padding:13px;
+
+  background:var(--primary);
+
+  color:white;
+
+  border-radius:10px;
+
+  font-weight:800;
+
+  margin-top:5px;
+}
+
+.next-btn:hover{
+  background:var(--primary-dark);
+}
+
+.lesson-complete{
+  display:none;
+
+  margin-top:16px;
+
+  background:#ecfff7;
+
+  border:1px solid #bdebd7;
+
+  color:#087d56;
+
+  padding:14px;
+
+  border-radius:12px;
+
+  font-weight:700;
+}
+
+/* LEVELS */
+
+.level-grid{
+  display:grid;
+
+  grid-template-columns:repeat(3,1fr);
+
+  gap:18px;
+}
+
+.level-card{
+  background:white;
+
+  border:1px solid var(--border);
+
+  padding:24px;
+
+  border-radius:18px;
+}
+
+.level-icon{
+  font-size:30px;
+
+  margin-bottom:12px;
+}
+
+.level-card h3{
+  margin-bottom:6px;
+}
+
+.level-card p{
+  color:var(--muted);
+
+  font-size:14px;
+}
+
+/* FEATURES */
+
+.features{
+  background:#17172b;
+
+  color:white;
+}
+
+.features-inner{
+  max-width:1150px;
+
+  margin:auto;
+
+  padding:65px 20px;
+}
+
+.features .section-header p{
+  color:#aaaabd;
+}
+
+.feature-grid{
+  display:grid;
+
+  grid-template-columns:repeat(4,1fr);
+
+  gap:16px;
+}
+
+.feature-card{
+  background:#24243c;
+
+  border:1px solid #35354f;
+
+  padding:22px;
+
+  border-radius:18px;
+}
+
+.feature-card .icon{
+  font-size:28px;
+
+  margin-bottom:14px;
+}
+
+.feature-card h3{
+  margin-bottom:6px;
+
+  font-size:17px;
+}
+
+.feature-card p{
+  color:#aaaabd;
+
+  font-size:13px;
 }
 
 /* CTA */
-.cta {
-  max-width: 1150px;
-  margin: 30px auto 70px;
-  padding: 45px 25px;
-  border-radius: 25px;
-  background: linear-gradient(135deg, #6c4df6, #8065fa);
-  color: white;
-  text-align: center;
+
+.cta{
+  max-width:1150px;
+
+  margin:40px auto 70px;
+
+  padding:45px 25px;
+
+  border-radius:25px;
+
+  background:
+  linear-gradient(
+    135deg,
+    #6c4df6,
+    #8065fa
+  );
+
+  color:white;
+
+  text-align:center;
 }
 
-.cta h2 {
-  font-size: 32px;
-  margin-bottom: 10px;
+.cta h2{
+  font-size:32px;
+
+  margin-bottom:10px;
 }
 
-.cta p {
-  opacity: .9;
-  margin-bottom: 22px;
+.cta p{
+  opacity:.9;
+
+  margin-bottom:22px;
 }
 
-.cta button {
-  background: white;
-  color: var(--primary);
-  padding: 13px 23px;
-  border-radius: 11px;
-  font-weight: 800;
+.cta button{
+  background:white;
+
+  color:var(--primary);
+
+  padding:13px 23px;
+
+  border-radius:11px;
+
+  font-weight:800;
 }
 
 /* FOOTER */
-footer {
-  background: white;
-  border-top: 1px solid var(--border);
+
+footer{
+  background:white;
+
+  border-top:1px solid var(--border);
 }
 
-.footer-inner {
-  max-width: 1150px;
-  margin: auto;
-  padding: 35px 20px;
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
+.footer-inner{
+  max-width:1150px;
+
+  margin:auto;
+
+  padding:35px 20px;
+
+  display:flex;
+
+  justify-content:space-between;
+
+  gap:20px;
 }
 
-.footer-text {
-  color: var(--muted);
-  font-size: 13px;
+.footer-text{
+  color:var(--muted);
+
+  font-size:13px;
 }
 
-.footer-links {
-  display: flex;
-  gap: 18px;
-  color: var(--muted);
-  font-size: 13px;
+.footer-links{
+  display:flex;
+
+  gap:18px;
+
+  color:var(--muted);
+
+  font-size:13px;
 }
 
 /* MOBILE */
-@media (max-width: 850px) {
-  .nav-links a:not(.nav-btn) {
-    display: none;
+
+@media(max-width:850px){
+
+  .hero{
+    grid-template-columns:1fr;
+
+    padding-top:45px;
   }
 
-  .hero {
-    grid-template-columns: 1fr;
-    padding-top: 45px;
+  .lesson-layout{
+    grid-template-columns:1fr;
   }
 
-  .hero-card {
-    max-width: 600px;
-    width: 100%;
-    margin: auto;
+  .lesson-sidebar{
+    display:flex;
+
+    overflow-x:auto;
+
+    gap:5px;
+
+    padding:8px;
   }
 
-  .level-grid {
-    grid-template-columns: 1fr;
+  .lesson-sidebar h3{
+    display:none;
   }
 
-  .feature-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .lesson-nav{
+    min-width:145px;
+
+    margin:0;
   }
+
+  .level-grid{
+    grid-template-columns:1fr;
+  }
+
+  .feature-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
 }
 
-@media (max-width: 600px) {
-  .nav-inner {
-    height: 62px;
-    padding: 0 14px;
+@media(max-width:600px){
+
+  .nav-inner{
+    height:62px;
+
+    padding:0 14px;
   }
 
-  .logo {
-    font-size: 17px;
+  .logo{
+    font-size:17px;
   }
 
-  .logo-icon {
-    width: 35px;
-    height: 35px;
+  .logo-icon{
+    width:35px;
+    height:35px;
   }
 
-  .nav-btn {
-    padding: 9px 13px;
-    font-size: 12px;
+  .xp-badge{
+    font-size:11px;
+
+    padding:7px 9px;
   }
 
-  .hero {
-    padding: 38px 15px 35px;
-    gap: 28px;
+  .hero{
+    padding:38px 15px 35px;
+
+    gap:28px;
   }
 
-  .hero h1 {
-    font-size: 40px;
-    letter-spacing: -1.5px;
+  .hero h1{
+    font-size:40px;
+
+    letter-spacing:-1.5px;
   }
 
-  .hero-text {
-    font-size: 16px;
+  .hero-text{
+    font-size:16px;
   }
 
-  .hero-buttons {
-    flex-direction: column;
+  .hero-buttons{
+    flex-direction:column;
   }
 
-  .hero-buttons button {
-    width: 100%;
+  .hero-buttons button{
+    width:100%;
   }
 
-  .section {
-    padding: 42px 15px;
+  .section{
+    padding:42px 15px;
   }
 
-  .section-header h2 {
-    font-size: 27px;
+  .section-header h2{
+    font-size:27px;
   }
 
-  .language-grid {
-    grid-template-columns: 1fr;
+  .language-grid{
+    grid-template-columns:1fr;
   }
 
-  .language-card {
-    padding: 20px;
+  .language-card{
+    padding:20px;
   }
 
-  .flag {
-    width: 58px;
-    height: 58px;
-    font-size: 30px;
+  .flag{
+    width:58px;
+    height:58px;
+
+    font-size:30px;
   }
 
-  .language-info h3 {
-    font-size: 20px;
+  .language-info h3{
+    font-size:20px;
   }
 
-  .feature-grid {
-    grid-template-columns: 1fr;
+  .lesson-wrapper{
+    padding:42px 12px;
   }
 
-  .features-inner {
-    padding: 48px 15px;
+  .lesson-top{
+    flex-direction:column;
+
+    align-items:flex-start;
   }
 
-  .cta {
-    margin: 15px;
-    margin-bottom: 45px;
-    padding: 38px 20px;
+  .lesson-top h2{
+    font-size:27px;
   }
 
-  .cta h2 {
-    font-size: 27px;
+  .language-switch{
+    width:100%;
   }
 
-  .footer-inner {
-    flex-direction: column;
-    padding: 28px 15px;
+  .language-switch button{
+    flex:1;
   }
 
-  .footer-links {
-    flex-wrap: wrap;
+  .lesson-card{
+    padding:17px;
+  }
+
+  .lesson-heading h2{
+    font-size:22px;
+  }
+
+  .phrase-card{
+    padding:13px;
+  }
+
+  .phrase-text{
+    font-size:20px;
+  }
+
+  .feature-grid{
+    grid-template-columns:1fr;
+  }
+
+  .features-inner{
+    padding:48px 15px;
+  }
+
+  .cta{
+    margin:15px;
+
+    margin-bottom:45px;
+
+    padding:38px 20px;
+  }
+
+  .cta h2{
+    font-size:27px;
+  }
+
+  .footer-inner{
+    flex-direction:column;
+
+    padding:28px 15px;
+  }
+
+  .footer-links{
+    flex-wrap:wrap;
   }
 }
 </style>
@@ -634,294 +1249,1741 @@ footer {
 
 <body>
 
-<!-- NAVIGATION -->
-<nav class="navbar">
-  <div class="nav-inner">
-    <a href="#" class="logo">
-      <div class="logo-icon">🗣️</div>
-      Desi<span>Lingo</span> AI
-    </a>
+<!-- NAVBAR -->
 
-    <div class="nav-links">
-      <a href="#languages">Languages</a>
-      <a href="#levels">Lessons</a>
-      <a href="#features">Features</a>
-      <button class="nav-btn" onclick="startLearning()">Start Learning</button>
-    </div>
-  </div>
+<nav class="navbar">
+
+<div class="nav-inner">
+
+<a href="#" class="logo">
+
+<div class="logo-icon">
+🗣️
+</div>
+
+Desi<span>Lingo</span> AI
+
+</a>
+
+<div class="nav-right">
+
+<div class="xp-badge" id="xpBadge">
+⭐ 0 XP
+</div>
+
+</div>
+
+</div>
+
 </nav>
 
+
 <!-- HERO -->
+
 <section class="hero">
 
-  <div>
-    <div class="badge">✨ AI Language Learning</div>
+<div>
 
-    <h1>
-      Speak <span>Hindi & Bengali</span> with Confidence
-    </h1>
+<div class="badge">
+✨ AI Language Learning
+</div>
 
-    <p class="hero-text">
-      Learn everyday Hindi and Bengali through simple lessons,
-      practical phrases, and AI-powered speaking practice.
-    </p>
+<h1>
+Speak <span>Hindi & Bengali</span> with Confidence
+</h1>
 
-    <div class="hero-buttons">
-      <button class="primary-btn" onclick="startLearning()">
-        Start Learning →
-      </button>
+<p class="hero-text">
 
-      <button class="secondary-btn" onclick="showDemo()">
-        ▶ Try a Demo
-      </button>
-    </div>
-  </div>
+Learn everyday Hindi and Bengali through
+simple lessons, practical phrases and
+interactive practice.
 
-  <!-- AI TUTOR PREVIEW -->
-  <div class="hero-card">
+</p>
 
-    <div class="tutor-top">
-      <div class="tutor-avatar">🤖</div>
-      <div>
-        <h3>AI Language Tutor</h3>
-        <p>● Ready to practice</p>
-      </div>
-    </div>
+<div class="hero-buttons">
 
-    <div class="chat">
-      <div class="message ai">
-        Let's practice Hindi! 👋<br>
-        How do you say "Hello" in Hindi?
-      </div>
+<button
+class="primary-btn"
+onclick="scrollToLessons()">
 
-      <div class="message user">
-        Namaste!
-      </div>
+Start Learning →
 
-      <div class="message ai">
-        🎉 Great! "Namaste" means Hello.
-      </div>
-    </div>
+</button>
 
-    <button class="practice-btn" onclick="showDemo()">
-      🎤 Practice Speaking
-    </button>
+<button
+class="secondary-btn"
+onclick="showDemo()">
 
-  </div>
+▶ Try a Demo
 
-</section>
+</button>
 
-<!-- LANGUAGES -->
-<section class="section" id="languages">
+</div>
 
-  <div class="section-header">
-    <h2>Choose Your Language</h2>
-    <p>Start with the language you want to learn.</p>
-  </div>
+</div>
 
-  <div class="language-grid">
 
-    <div class="language-card">
-      <div class="flag">🇮🇳</div>
+<div class="hero-card">
 
-      <div class="language-info">
-        <h3>Hindi</h3>
-        <p>Learn everyday Hindi from beginner to advanced.</p>
-        <button class="learn-btn" onclick="chooseLanguage('Hindi')">
-          Learn Hindi →
-        </button>
-      </div>
-    </div>
+<div class="tutor-top">
 
-    <div class="language-card">
-      <div class="flag">🇮🇳</div>
+<div class="tutor-avatar">
+🤖
+</div>
 
-      <div class="language-info">
-        <h3>Bengali</h3>
-        <p>Learn useful Bengali words, phrases and conversations.</p>
-        <button class="learn-btn" onclick="chooseLanguage('Bengali')">
-          Learn Bengali →
-        </button>
-      </div>
-    </div>
+<div>
 
-  </div>
+<h3>
+AI Language Tutor
+</h3>
 
-</section>
+<p>
+● Ready to practice
+</p>
 
-<!-- LEVELS -->
-<section class="section" id="levels">
+</div>
 
-  <div class="section-header">
-    <h2>Learn at Your Level</h2>
-    <p>Simple lessons designed for every learner.</p>
-  </div>
+</div>
 
-  <div class="level-grid">
 
-    <div class="level-card">
-      <div class="level-icon">🌱</div>
-      <h3>Beginner</h3>
-      <p>Learn greetings, basic vocabulary and everyday phrases.</p>
-    </div>
+<div class="chat">
 
-    <div class="level-card">
-      <div class="level-icon">🚀</div>
-      <h3>Intermediate</h3>
-      <p>Build sentences and practice real-life conversations.</p>
-    </div>
+<div class="message ai">
 
-    <div class="level-card">
-      <div class="level-icon">🏆</div>
-      <h3>Advanced</h3>
-      <p>Improve fluency, expressions and natural conversation.</p>
-    </div>
+Let's practice Hindi! 👋<br>
 
-  </div>
+How do you say "Hello" in Hindi?
+
+</div>
+
+<div class="message user">
+
+Namaste!
+
+</div>
+
+<div class="message ai">
+
+🎉 Great! "Namaste" means Hello.
+
+</div>
+
+</div>
+
+
+<button
+class="practice-btn"
+onclick="scrollToLessons()">
+
+🎤 Practice Speaking
+
+</button>
+
+</div>
 
 </section>
 
-<!-- FEATURES -->
-<section class="features" id="features">
 
-  <div class="features-inner">
+<!-- LANGUAGE CARDS -->
 
-    <div class="section-header">
-      <h2>Learn More Than Words</h2>
-      <p>More powerful learning features will be added in future phases.</p>
-    </div>
+<section
+class="section"
+id="languages">
 
-    <div class="feature-grid">
+<div class="section-header">
 
-      <div class="feature-card">
-        <div class="icon">🤖</div>
-        <h3>AI Tutor</h3>
-        <p>Practice with an intelligent language learning assistant.</p>
-      </div>
+<h2>
+Choose Your Language
+</h2>
 
-      <div class="feature-card">
-        <div class="icon">🎤</div>
-        <h3>Speaking Practice</h3>
-        <p>Practice pronunciation and speaking skills.</p>
-      </div>
+<p>
+Start with the language you want to learn.
+</p>
 
-      <div class="feature-card">
-        <div class="icon">💬</div>
-        <h3>Real Conversations</h3>
-        <p>Learn phrases used in everyday situations.</p>
-      </div>
+</div>
 
-      <div class="feature-card">
-        <div class="icon">🔥</div>
-        <h3>Daily Streak</h3>
-        <p>Build a daily learning habit and track your progress.</p>
-      </div>
 
-    </div>
+<div class="language-grid">
 
-  </div>
+<div class="language-card">
+
+<div class="flag">
+🇮🇳
+</div>
+
+<div class="language-info">
+
+<h3>
+Hindi
+</h3>
+
+<p>
+Learn everyday Hindi from beginner level.
+</p>
+
+<button
+class="learn-btn"
+onclick="selectLanguage('hindi')">
+
+Learn Hindi →
+
+</button>
+
+</div>
+
+</div>
+
+
+<div class="language-card">
+
+<div class="flag">
+🇮🇳
+</div>
+
+<div class="language-info">
+
+<h3>
+Bengali
+</h3>
+
+<p>
+Learn useful Bengali words and phrases.
+</p>
+
+<button
+class="learn-btn"
+onclick="selectLanguage('bengali')">
+
+Learn Bengali →
+
+</button>
+
+</div>
+
+</div>
+
+</div>
 
 </section>
+
+
+<!-- LESSON AREA -->
+
+<section
+class="lesson-area"
+id="lessons">
+
+<div class="lesson-wrapper">
+
+
+<div class="lesson-top">
+
+<div>
+
+<h2 id="courseTitle">
+Hindi Lessons
+</h2>
+
+<p id="courseDescription">
+Build your everyday Hindi vocabulary and speaking confidence.
+</p>
+
+</div>
+
+
+<div class="language-switch">
+
+<button
+id="hindiSwitch"
+class="active"
+onclick="selectLanguage('hindi')">
+
+🇮🇳 Hindi
+
+</button>
+
+<button
+id="bengaliSwitch"
+onclick="selectLanguage('bengali')">
+
+🇮🇳 Bengali
+
+</button>
+
+</div>
+
+</div>
+
 
 <!-- PROGRESS -->
-<section class="section">
 
-  <div class="section-header">
-    <h2>Your Learning Journey</h2>
-    <p>Your personal progress dashboard will grow in future phases.</p>
-  </div>
+<div class="course-progress">
 
-  <div class="progress-card">
+<div class="progress-header">
 
-    <div class="progress-top">
-      <div>
-        <h3>Hindi — Beginner</h3>
-        <span style="color:#6f7185;font-size:13px;">
-          Getting started
-        </span>
-      </div>
+<span>
+Course Progress
+</span>
 
-      <div class="streak">🔥 3 day streak</div>
-    </div>
+<span id="progressText">
+0 / 5 lessons
+</span>
 
-    <div class="progress-bar">
-      <div class="progress-fill"></div>
-    </div>
+</div>
 
-    <div class="progress-info">
-      <span>3 lessons completed</span>
-      <span>35%</span>
-    </div>
+<div class="progress-bar">
 
-  </div>
+<div
+class="progress-fill"
+id="progressFill">
+</div>
+
+</div>
+
+</div>
+
+
+<!-- LESSON LAYOUT -->
+
+<div class="lesson-layout">
+
+
+<!-- SIDEBAR -->
+
+<aside class="lesson-sidebar">
+
+<h3>
+Lessons
+</h3>
+
+<button
+class="lesson-nav active"
+id="lessonNav0"
+onclick="openLesson(0)">
+
+<span class="lesson-number">
+1
+</span>
+
+👋 Greetings
+
+</button>
+
+
+<button
+class="lesson-nav"
+id="lessonNav1"
+onclick="openLesson(1)">
+
+<span class="lesson-number">
+2
+</span>
+
+🔢 Numbers
+
+</button>
+
+
+<button
+class="lesson-nav"
+id="lessonNav2"
+onclick="openLesson(2)">
+
+<span class="lesson-number">
+3
+</span>
+
+🍛 Food
+
+</button>
+
+
+<button
+class="lesson-nav"
+id="lessonNav3"
+onclick="openLesson(3)">
+
+<span class="lesson-number">
+4
+</span>
+
+🛍️ Shopping
+
+</button>
+
+
+<button
+class="lesson-nav"
+id="lessonNav4"
+onclick="openLesson(4)">
+
+<span class="lesson-number">
+5
+</span>
+
+✈️ Travel
+
+</button>
+
+</aside>
+
+
+<!-- CONTENT -->
+
+<section>
+
+<div class="lesson-card">
+
+
+<div class="lesson-heading">
+
+<div>
+
+<h2 id="lessonTitle">
+Greetings & Basics
+</h2>
+
+<p id="lessonDescription">
+Start with simple phrases you can use every day.
+</p>
+
+</div>
+
+<div class="level-badge">
+BEGINNER
+</div>
+
+</div>
+
+
+<!-- PHRASES -->
+
+<div
+class="phrase-list"
+id="phraseList">
+</div>
+
+
+<!-- QUIZ -->
+
+<div class="quiz">
+
+<h3>
+Quick Practice 🎯
+</h3>
+
+<p
+class="quiz-sub"
+id="quizQuestion">
+</p>
+
+
+<div id="answers">
+</div>
+
+
+<button
+class="next-btn"
+onclick="completeLesson()">
+
+Complete Lesson →
+
+</button>
+
+</div>
+
+
+<div
+class="lesson-complete"
+id="lessonComplete">
+
+✅ Lesson completed!
+
+Great job! Your progress and XP
+have been saved on this device.
+
+</div>
+
+
+</div>
 
 </section>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- LEVELS -->
+
+<section
+class="section"
+id="levels">
+
+<div class="section-header">
+
+<h2>
+Learn at Your Level
+</h2>
+
+<p>
+Simple lessons designed for every learner.
+</p>
+
+</div>
+
+
+<div class="level-grid">
+
+<div class="level-card">
+
+<div class="level-icon">
+🌱
+</div>
+
+<h3>
+Beginner
+</h3>
+
+<p>
+Learn greetings, basic vocabulary and
+everyday phrases.
+</p>
+
+</div>
+
+
+<div class="level-card">
+
+<div class="level-icon">
+🚀
+</div>
+
+<h3>
+Intermediate
+</h3>
+
+<p>
+Build sentences and practice real-life
+conversations.
+</p>
+
+</div>
+
+
+<div class="level-card">
+
+<div class="level-icon">
+🏆
+</div>
+
+<h3>
+Advanced
+</h3>
+
+<p>
+Improve fluency, expressions and natural
+conversation.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- FEATURES -->
+
+<section
+class="features"
+id="features">
+
+<div class="features-inner">
+
+<div class="section-header">
+
+<h2>
+Learn More Than Words
+</h2>
+
+<p>
+More powerful learning features will be added
+in future phases.
+</p>
+
+</div>
+
+
+<div class="feature-grid">
+
+
+<div class="feature-card">
+
+<div class="icon">
+🤖
+</div>
+
+<h3>
+AI Tutor
+</h3>
+
+<p>
+Practice with an intelligent language learning
+assistant.
+</p>
+
+</div>
+
+
+<div class="feature-card">
+
+<div class="icon">
+🎤
+</div>
+
+<h3>
+Speaking Practice
+</h3>
+
+<p>
+Practice pronunciation and speaking skills.
+</p>
+
+</div>
+
+
+<div class="feature-card">
+
+<div class="icon">
+💬
+</div>
+
+<h3>
+Real Conversations
+</h3>
+
+<p>
+Learn phrases used in everyday situations.
+</p>
+
+</div>
+
+
+<div class="feature-card">
+
+<div class="icon">
+🔥
+</div>
+
+<h3>
+Daily Streak
+</h3>
+
+<p>
+Build a daily learning habit and track your
+progress.
+</p>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
 
 <!-- CTA -->
+
 <section class="cta">
 
-  <h2>Ready to Start Speaking?</h2>
+<h2>
+Ready to Start Speaking?
+</h2>
 
-  <p>
-    Begin your Hindi or Bengali learning journey today.
-  </p>
+<p>
+Begin your Hindi or Bengali learning journey today.
+</p>
 
-  <button onclick="startLearning()">
-    Start Learning Free →
-  </button>
+<button onclick="scrollToLessons()">
+
+Start Learning Free →
+
+</button>
 
 </section>
 
+
 <!-- FOOTER -->
+
 <footer>
 
-  <div class="footer-inner">
+<div class="footer-inner">
 
-    <div class="footer-text">
-      © 2026 DesiLingo AI. Learn languages with confidence.
-    </div>
+<div class="footer-text">
 
-    <div class="footer-links">
-      <a href="#" onclick="showInfo('About')">About</a>
-      <a href="#" onclick="showInfo('Privacy')">Privacy</a>
-      <a href="#" onclick="showInfo('Terms')">Terms</a>
-      <a href="#" onclick="showInfo('Contact')">Contact</a>
-    </div>
+© 2026 DesiLingo AI.
+Learn languages with confidence.
 
-  </div>
+</div>
+
+<div class="footer-links">
+
+<a href="#">
+About
+</a>
+
+<a href="#">
+Privacy
+</a>
+
+<a href="#">
+Terms
+</a>
+
+<a href="#">
+Contact
+</a>
+
+</div>
+
+</div>
 
 </footer>
 
+
 <script>
 
-function startLearning() {
-  alert(
-    "Welcome to DesiLingo AI! 🎉\n\n" +
-    "Choose Hindi or Bengali to begin.\n\n" +
-    "Full interactive lessons will be added in Phase 2."
-  );
+/* =========================================
+   PHASE 2 LESSON DATA
+========================================= */
+
+const lessons = {
+
+hindi: [
+
+{
+
+title:"Greetings & Basics",
+
+description:
+"Start with simple phrases you can use every day.",
+
+phrases:[
+
+[
+"नमस्ते",
+"Namaste",
+"Hello / Greetings"
+],
+
+[
+"आप कैसे हैं?",
+"Aap kaise hain?",
+"How are you?"
+],
+
+[
+"मैं ठीक हूँ।",
+"Main theek hoon.",
+"I am fine."
+],
+
+[
+"धन्यवाद",
+"Dhanyavaad",
+"Thank you."
+]
+
+],
+
+question:
+"How do you say “Thank you” in Hindi?",
+
+answers:[
+"Namaste",
+"Dhanyavaad",
+"Aap kaise hain?"
+],
+
+correct:1
+
+},
+
+
+{
+
+title:"Numbers 1–10",
+
+description:
+"Learn basic Hindi numbers.",
+
+phrases:[
+
+[
+"एक",
+"Ek",
+"One"
+],
+
+[
+"दो",
+"Do",
+"Two"
+],
+
+[
+"तीन",
+"Teen",
+"Three"
+],
+
+[
+"चार",
+"Chaar",
+"Four"
+],
+
+[
+"पाँच",
+"Paanch",
+"Five"
+]
+
+],
+
+question:
+"Which Hindi word means “Three”?",
+
+answers:[
+"Do",
+"Teen",
+"Paanch"
+],
+
+correct:1
+
+},
+
+
+{
+
+title:"Food & Restaurant",
+
+description:
+"Useful Hindi phrases for ordering food.",
+
+phrases:[
+
+[
+"मुझे खाना चाहिए।",
+"Mujhe khaana chahiye.",
+"I want food."
+],
+
+[
+"पानी दीजिए।",
+"Paani dijiye.",
+"Please give me water."
+],
+
+[
+"यह कितना है?",
+"Yeh kitna hai?",
+"How much is this?"
+],
+
+[
+"बहुत स्वादिष्ट।",
+"Bahut swaadisht.",
+"Very delicious."
+]
+
+],
+
+question:
+"What does “Paani dijiye” mean?",
+
+answers:[
+"Give me water, please",
+"Very delicious",
+"How much is this?"
+],
+
+correct:0
+
+},
+
+
+{
+
+title:"Shopping",
+
+description:
+"Practice useful Hindi shopping phrases.",
+
+phrases:[
+
+[
+"मुझे यह पसंद है।",
+"Mujhe yeh pasand hai.",
+"I like this."
+],
+
+[
+"यह कितने का है?",
+"Yeh kitne ka hai?",
+"How much does this cost?"
+],
+
+[
+"थोड़ा कम कीजिए।",
+"Thoda kam kijiye.",
+"Please reduce the price."
+],
+
+[
+"मुझे यह चाहिए।",
+"Mujhe yeh chahiye.",
+"I want this."
+]
+
+],
+
+question:
+"How do you ask “How much does this cost?”",
+
+answers:[
+"Mujhe yeh chahiye",
+"Yeh kitne ka hai?",
+"Thoda kam kijiye"
+],
+
+correct:1
+
+},
+
+
+{
+
+title:"Travel Essentials",
+
+description:
+"Useful Hindi phrases for getting around.",
+
+phrases:[
+
+[
+"स्टेशन कहाँ है?",
+"Station kahaan hai?",
+"Where is the station?"
+],
+
+[
+"मुझे वहाँ जाना है।",
+"Mujhe wahaan jaana hai.",
+"I want to go there."
+],
+
+[
+"रुकिए।",
+"Rukiye.",
+"Please stop / Wait."
+],
+
+[
+"चलो!",
+"Chalo!",
+"Let's go!"
+]
+
+],
+
+question:
+"What does “Station kahaan hai?” mean?",
+
+answers:[
+"Where is the station?",
+"Let's go!",
+"Please stop."
+],
+
+correct:0
+
 }
 
-function chooseLanguage(language) {
-  alert(
-    "🇮🇳 " + language + " selected!\n\n" +
-    "Your " + language + " learning course will be available in Phase 2."
-  );
+],
+
+
+bengali: [
+
+{
+
+title:"Greetings & Basics",
+
+description:
+"Start with simple Bengali phrases.",
+
+phrases:[
+
+[
+"নমস্কার",
+"Nomoshkar",
+"Hello / Greetings"
+],
+
+[
+"আপনি কেমন আছেন?",
+"Apni kemon achhen?",
+"How are you?"
+],
+
+[
+"আমি ভালো আছি।",
+"Ami bhalo achhi.",
+"I am fine."
+],
+
+[
+"ধন্যবাদ",
+"Dhonnobad",
+"Thank you."
+]
+
+],
+
+question:
+"How do you say “Thank you” in Bengali?",
+
+answers:[
+"নমস্কার",
+"ধন্যবাদ",
+"আমি ভালো আছি"
+],
+
+correct:1
+
+},
+
+
+{
+
+title:"Numbers 1–10",
+
+description:
+"Learn basic Bengali numbers.",
+
+phrases:[
+
+[
+"এক",
+"Ek",
+"One"
+],
+
+[
+"দুই",
+"Dui",
+"Two"
+],
+
+[
+"তিন",
+"Tin",
+"Three"
+],
+
+[
+"চার",
+"Char",
+"Four"
+],
+
+[
+"পাঁচ",
+"Panch",
+"Five"
+]
+
+],
+
+question:
+"Which Bengali word means “Three”?",
+
+answers:[
+"দুই",
+"তিন",
+"পাঁচ"
+],
+
+correct:1
+
+},
+
+
+{
+
+title:"Food & Restaurant",
+
+description:
+"Useful Bengali phrases for ordering food.",
+
+phrases:[
+
+[
+"আমি খাবার চাই।",
+"Ami khabar chai.",
+"I want food."
+],
+
+[
+"জল দিন।",
+"Jol din.",
+"Please give me water."
+],
+
+[
+"এটা কত?",
+"Eta koto?",
+"How much is this?"
+],
+
+[
+"খুব সুস্বাদু।",
+"Khub suswadu.",
+"Very delicious."
+]
+
+],
+
+question:
+"What does “জল দিন” mean?",
+
+answers:[
+"Give me water, please",
+"Very delicious",
+"How much is this?"
+],
+
+correct:0
+
+},
+
+
+{
+
+title:"Shopping",
+
+description:
+"Practice useful Bengali shopping phrases.",
+
+phrases:[
+
+[
+"এটা আমার পছন্দ।",
+"Eta amar pochhondo.",
+"I like this."
+],
+
+[
+"এটার দাম কত?",
+"Etar dam koto?",
+"How much does this cost?"
+],
+
+[
+"একটু কম করুন।",
+"Ektu kom korun.",
+"Please reduce the price."
+],
+
+[
+"আমি এটা চাই।",
+"Ami eta chai.",
+"I want this."
+]
+
+],
+
+question:
+"How do you ask “How much does this cost?”",
+
+answers:[
+"আমি এটা চাই",
+"এটার দাম কত?",
+"একটু কম করুন"
+],
+
+correct:1
+
+},
+
+
+{
+
+title:"Travel Essentials",
+
+description:
+"Useful Bengali phrases for getting around.",
+
+phrases:[
+
+[
+"স্টেশন কোথায়?",
+"Station kothay?",
+"Where is the station?"
+],
+
+[
+"আমি সেখানে যেতে চাই।",
+"Ami sekhane jete chai.",
+"I want to go there."
+],
+
+[
+"থামুন।",
+"Thamun.",
+"Please stop."
+],
+
+[
+"চলুন!",
+"Cholun!",
+"Let's go!"
+]
+
+],
+
+question:
+"What does “স্টেশন কোথায়?” mean?",
+
+answers:[
+"Where is the station?",
+"Let's go!",
+"Please stop."
+],
+
+correct:0
+
 }
 
-function showDemo() {
-  alert(
-    "🤖 AI Tutor Demo\n\n" +
-    "AI speaking practice, pronunciation feedback and real conversations will be added in Phase 3 and Phase 4."
-  );
+]
+
+};
+
+
+/* =========================================
+   STATE
+========================================= */
+
+let currentLanguage =
+localStorage.getItem("desilingo_language") || "hindi";
+
+let currentLesson =
+Number(
+localStorage.getItem(
+"desilingo_current_lesson"
+) || 0
+);
+
+let xp =
+Number(
+localStorage.getItem(
+"desilingo_xp"
+) || 0
+);
+
+let completed = {
+
+hindi:
+JSON.parse(
+localStorage.getItem(
+"desilingo_completed_hindi"
+) || "[]"
+),
+
+bengali:
+JSON.parse(
+localStorage.getItem(
+"desilingo_completed_bengali"
+) || "[]"
+)
+
+};
+
+
+/* =========================================
+   LANGUAGE
+========================================= */
+
+function selectLanguage(language){
+
+currentLanguage=language;
+
+currentLesson=0;
+
+localStorage.setItem(
+"desilingo_language",
+language
+);
+
+renderLanguage();
+
+scrollToLessons();
+
 }
 
-function showInfo(page) {
-  alert(
-    page + " page\n\n" +
-    "This page will be completed during the website launch phase."
-  );
+
+/* =========================================
+   RENDER LANGUAGE
+========================================= */
+
+function renderLanguage(){
+
+const isHindi =
+currentLanguage==="hindi";
+
+
+document
+.getElementById("hindiSwitch")
+.classList.toggle(
+"active",
+isHindi
+);
+
+document
+.getElementById("bengaliSwitch")
+.classList.toggle(
+"active",
+!isHindi
+);
+
+
+document
+.getElementById("courseTitle")
+.textContent =
+isHindi
+? "Hindi Lessons"
+: "Bengali Lessons";
+
+
+document
+.getElementById("courseDescription")
+.textContent =
+isHindi
+
+? "Build your everyday Hindi vocabulary and speaking confidence."
+
+: "Build your everyday Bengali vocabulary and speaking confidence.";
+
+
+renderLesson();
+
 }
+
+
+/* =========================================
+   OPEN LESSON
+========================================= */
+
+function openLesson(index){
+
+currentLesson=index;
+
+localStorage.setItem(
+"desilingo_current_lesson",
+index
+);
+
+renderLesson();
+
+}
+
+
+/* =========================================
+   RENDER LESSON
+========================================= */
+
+function renderLesson(){
+
+const lessonData =
+lessons[currentLanguage][currentLesson];
+
+
+document
+.getElementById("lessonTitle")
+.textContent =
+lessonData.title;
+
+
+document
+.getElementById("lessonDescription")
+.textContent =
+lessonData.description;
+
+
+const phraseList =
+document.getElementById(
+"phraseList"
+);
+
+
+phraseList.innerHTML="";
+
+
+lessonData.phrases.forEach(
+phrase=>{
+
+const card =
+document.createElement("div");
+
+card.className=
+"phrase-card";
+
+
+card.innerHTML=`
+
+<div>
+
+<div class="phrase-text">
+${phrase[0]}
+</div>
+
+<div class="phrase-pronunciation">
+${phrase[1]}
+</div>
+
+<div class="phrase-meaning">
+${phrase[2]}
+</div>
+
+</div>
+
+<button
+class="speak-btn"
+onclick='speakText(${JSON.stringify(phrase[0])})'>
+
+🔊
+
+</button>
+
+`;
+
+phraseList.appendChild(card);
+
+});
+
+
+/* QUIZ */
+
+document
+.getElementById("quizQuestion")
+.textContent =
+lessonData.question;
+
+
+const answers =
+document.getElementById(
+"answers"
+);
+
+answers.innerHTML="";
+
+
+lessonData.answers.forEach(
+(answer,index)=>{
+
+const button =
+document.createElement("button");
+
+button.className="answer";
+
+button.textContent=answer;
+
+button.onclick=()=>{
+checkAnswer(
+index,
+button
+);
+};
+
+answers.appendChild(button);
+
+});
+
+
+/* COMPLETED */
+
+document
+.getElementById("lessonComplete")
+.style.display =
+completed[currentLanguage]
+.includes(currentLesson)
+? "block"
+: "none";
+
+
+updateProgress();
+
+}
+
+
+/* =========================================
+   QUIZ
+========================================= */
+
+function checkAnswer(
+selected,
+button
+){
+
+const correct =
+lessons[currentLanguage]
+[currentLesson]
+.correct;
+
+
+const buttons =
+document.querySelectorAll(
+".answer"
+);
+
+
+buttons.forEach(
+b=>{
+b.disabled=true;
+}
+);
+
+
+if(selected===correct){
+
+button.classList.add(
+"correct"
+);
+
+}else{
+
+button.classList.add(
+"wrong"
+);
+
+buttons[correct]
+.classList.add(
+"correct"
+);
+
+}
+
+}
+
+
+/* =========================================
+   COMPLETE LESSON
+========================================= */
+
+function completeLesson(){
+
+const list =
+completed[currentLanguage];
+
+
+if(!list.includes(currentLesson)){
+
+list.push(currentLesson);
+
+xp+=20;
+
+localStorage.setItem(
+"desilingo_xp",
+xp
+);
+
+localStorage.setItem(
+"desilingo_completed_"+
+currentLanguage,
+JSON.stringify(list)
+);
+
+}
+
+document
+.getElementById("lessonComplete")
+.style.display="block";
+
+
+updateProgress();
+
+}
+
+
+/* =========================================
+   PROGRESS
+========================================= */
+
+function updateProgress(){
+
+const done =
+completed[currentLanguage].length;
+
+const total =
+lessons[currentLanguage].length;
+
+const percent =
+(done/total)*100;
+
+
+document
+.getElementById("progressFill")
+.style.width=
+percent+"%";
+
+
+document
+.getElementById("progressText")
+.textContent=
+done+" / "+total+" lessons";
+
+
+document
+.getElementById("xpBadge")
+.textContent=
+"⭐ "+xp+" XP";
+
+
+for(
+let i=0;
+i<total;
+i++
+){
+
+const nav =
+document.getElementById(
+"lessonNav"+i
+);
+
+if(!nav) continue;
+
+
+nav.classList.toggle(
+"active",
+i===currentLesson
+);
+
+
+nav.classList.toggle(
+"completed",
+completed[currentLanguage]
+.includes(i)
+);
+
+
+const number =
+nav.querySelector(
+".lesson-number"
+);
+
+
+if(
+completed[currentLanguage]
+.includes(i)
+){
+
+number.textContent="✓";
+
+}else{
+
+number.textContent=
+i+1;
+
+}
+
+}
+
+}
+
+
+/* =========================================
+   SPEECH
+========================================= */
+
+function speakText(text){
+
+if(
+!("speechSynthesis" in window)
+){
+
+alert(
+"Speech playback is not supported by this browser."
+);
+
+return;
+
+}
+
+const voice =
+new SpeechSynthesisUtterance(
+text
+);
+
+
+voice.lang =
+currentLanguage==="hindi"
+? "hi-IN"
+: "bn-IN";
+
+
+voice.rate=.8;
+
+voice.pitch=1;
+
+speechSynthesis.cancel();
+
+speechSynthesis.speak(
+voice
+);
+
+}
+
+
+/* =========================================
+   NAVIGATION
+========================================= */
+
+function scrollToLessons(){
+
+document
+.getElementById("lessons")
+.scrollIntoView({
+behavior:"smooth"
+});
+
+}
+
+
+function showDemo(){
+
+alert(
+"🎓 DesiLingo AI Demo\n\n"+
+"Choose Hindi or Bengali, "+
+"open a lesson, listen to pronunciation "+
+"and complete the quiz.\n\n"+
+"AI conversation and speaking feedback "+
+"will arrive in Phase 3 and Phase 4."
+);
+
+}
+
+
+/* =========================================
+   START
+========================================= */
+
+renderLanguage();
 
 </script>
 
