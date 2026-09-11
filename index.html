@@ -3619,29 +3619,114 @@ text,
 
 input.value = "";
 
-setTimeout(()=>{
-
-const response =
-getDemoTutorResponse(text);
+/* Thinking message */
 
 addTutorMessage(
-response,
+"Thinking... 🤔",
 "bot"
 );
 
-/* 🔊 AI TUTOR VOICE */
+const messages =
+document.getElementById("aiMessages");
 
-let voiceText =
-response
-.replace(/<br\s*\/?>/gi, " ")
-.replace(/<[^>]*>/g, "")
-.replace(/&quot;/g, '"')
-.replace(/&amp;/g, "&")
-.trim();
+setTimeout(async ()=>{
 
-speakText(voiceText);
+try{
 
-},500);
+const response =
+await fetch("/api/chat",{
+
+method:"POST",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify({
+
+message:text,
+
+language:tutorLanguage
+
+})
+
+});
+
+
+const data =
+await response.json();
+
+
+/* Remove Thinking message */
+
+const lastMessage =
+messages.lastElementChild;
+
+if(lastMessage &&
+lastMessage.textContent.includes("Thinking")){
+
+lastMessage.remove();
+
+}
+
+
+if(!response.ok){
+
+throw new Error(
+data.error ||
+"AI request failed"
+);
+
+}
+
+
+const reply =
+data.reply ||
+"Sorry, I could not generate a response.";
+
+
+/* Show AI response */
+
+addTutorMessage(
+reply,
+"bot"
+);
+
+
+/* 🔊 Voice */
+
+speakText(reply);
+
+
+}catch(error){
+
+console.error(error);
+
+
+/* Remove Thinking message */
+
+const lastMessage =
+messages.lastElementChild;
+
+if(lastMessage &&
+lastMessage.textContent.includes("Thinking")){
+
+lastMessage.remove();
+
+}
+
+
+addTutorMessage(
+
+"Sorry! Something went wrong. Please try again. 😔",
+
+"bot"
+
+);
+
+}
+
+},300);
 
 }
 
