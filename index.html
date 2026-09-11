@@ -1997,7 +1997,244 @@ have been saved on this device.
 </section>
 
 
-<!-- LEVELS -->
+<!-- =========================================
+     PHASE 3.1 — AI TUTOR
+========================================= -->
+
+<section class="ai-tutor-section" id="aiTutor">
+
+<div class="ai-tutor-wrapper">
+
+<div class="ai-tutor-header">
+
+<div class="badge">
+🤖 AI Language Tutor
+</div>
+
+<h2>
+Practice with Your AI Tutor
+</h2>
+
+<p>
+Ask questions, translate sentences and practice
+Hindi or Bengali with your personal AI tutor.
+</p>
+
+</div>
+
+<div class="tutor-language-switch">
+
+<button
+id="tutorHindiBtn"
+class="active"
+onclick="selectTutorLanguage('hindi')">
+
+🇮🇳 Hindi Tutor
+
+</button>
+
+<button
+id="tutorBengaliBtn"
+onclick="selectTutorLanguage('bengali')">
+
+🇮🇳 Bengali Tutor
+
+</button>
+
+</div>
+
+<div class="ai-chat-card">
+
+<div class="ai-chat-header">
+
+<div class="ai-chat-avatar">
+🤖
+</div>
+
+<div>
+
+<h3 id="tutorName">
+Hindi AI Tutor
+</h3>
+
+<div class="ai-chat-status">
+● Demo Tutor Ready
+</div>
+
+</div>
+
+</div>
+
+<div
+class="ai-messages"
+id="aiMessages">
+
+<div class="ai-message bot">
+
+<strong>🤖 AI Tutor</strong>
+
+Hi! I'm your Hindi tutor. 👋
+
+Let's learn together!
+
+How can I help you today?
+
+</div>
+
+<div class="ai-message user">
+
+How do I say "How are you?" in Hindi?
+
+</div>
+
+<div class="ai-message bot">
+
+<strong>🤖 AI Tutor</strong>
+
+You can say:
+
+<b>आप कैसे हैं?</b>
+
+<br>
+
+<i>Aap kaise hain?</i>
+
+<br>
+
+It means "How are you?"
+
+</div>
+
+</div>
+
+<div class="ai-suggestions">
+
+<div class="ai-suggestions-title">
+Try asking:
+</div>
+
+<div
+class="suggestion-list"
+id="suggestionList">
+
+<button
+class="suggestion-btn"
+onclick="useSuggestion('How do I say Hello?')">
+
+How do I say Hello?
+
+</button>
+
+<button
+class="suggestion-btn"
+onclick="useSuggestion('Translate: I am hungry')">
+
+Translate: I am hungry
+
+</button>
+
+<button
+class="suggestion-btn"
+onclick="useSuggestion('Correct my sentence')">
+
+Correct my sentence
+
+</button>
+
+</div>
+
+</div>
+
+<div class="ai-input-area">
+
+<input
+type="text"
+id="aiInput"
+class="ai-input"
+placeholder="Ask your tutor in English..."
+autocomplete="off"
+>
+
+<button
+class="ai-send-btn"
+onclick="sendTutorMessage()">
+
+Send ➤
+
+</button>
+
+</div>
+
+</div>
+
+<div class="ai-tools">
+
+<div
+class="ai-tool"
+onclick="aiTool('translate')">
+
+<div class="ai-tool-icon">
+🌐
+</div>
+
+<h4>
+Translation
+</h4>
+
+<p>
+Translate English to your language
+</p>
+
+</div>
+
+<div
+class="ai-tool"
+onclick="aiTool('grammar')">
+
+<div class="ai-tool-icon">
+📚
+</div>
+
+<h4>
+Grammar Help
+</h4>
+
+<p>
+Understand grammar simply
+</p>
+
+</div>
+
+<div
+class="ai-tool"
+onclick="aiTool('correct')">
+
+<div class="ai-tool-icon">
+✏️
+</div>
+
+<h4>
+Correct My Sentence
+</h4>
+
+<p>
+Improve your sentence
+</p>
+
+</div>
+
+</div>
+
+<div class="ai-demo-note">
+
+✨ Phase 3.1 Demo — Real AI responses will be connected in Phase 3.2.
+
+</div>
+
+</div>
+
+</section>
+  <!-- LEVELS -->
 
 <section
 class="section"
