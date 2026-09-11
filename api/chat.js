@@ -1,95 +1,60 @@
-export default async function handler(req, res) {
+// api/chat.js
+// DesiLingo AI Tutor backend — powered by Groq (free tier)
+// Deploy on Vercel: this file automatically becomes the /api/chat endpoint.
 
-  // Only allow POST requests
+export default async function handler(req, res) {
   if (req.method !== "POST") {
-    return res.status(405).json({
-      error: "Method not allowed"
-    });
+    return res.status(405).json({ error: "Method not allowed" });
   }
+
+  const { message, language } = req.body || {};
+
+  if (!message || !language) {
+    return res.status(400).json({ error: "Missing 'message' or 'language'." });
+  }
+
+  const languageName = language === "hindi" ? "Hindi" : "Bengali";
+
+  const systemPrompt = `You are a friendly, encouraging ${languageName} language tutor inside an app called DesiLingo AI.
+The student writes to you in English. Your job:
+- Teach them how to say things in ${languageName}.
+- Always give: the ${languageName} script, a simple romanized pronunciation, and a short English meaning.
+- If they ask you to correct a sentence, give the corrected version, explain the mistake briefly, and give the natural version.
+- Keep replies short (3-6 lines), warm, and beginner-friendly.
+- You may use simple HTML tags like <b>, <i>, and <br> for formatting, since the reply is rendered as HTML.`;
 
   try {
-
-    const { message, language } = req.body || {};
-
-    if (!message || !message.trim()) {
-      return res.status(400).json({
-        error: "Message is required"
-      });
-    }
-
-    const targetLanguage =
-      language === "bengali"
-        ? "Bengali"
-        : "Hindi";
-
-    const apiKey =
-      process.env.OPENAI_API_KEY;
-
-    if (!apiKey) {
-      return res.status(500).json({
-        error: "OPENAI_API_KEY is not configured"
-      });
-    }
-
-    const response = await fetch(
-      "https://api.openai.com/v1/responses",
-      {
-        method: "POST",
-
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${apiKey}`
-        },
-
-        body: JSON.stringify({
-
-          model: "gpt-5-mini",
-
-          instructions:
-            `You are DesiLingo AI, a friendly language tutor.
-             The student's target language is ${targetLanguage}.
-             Help the student learn naturally and simply.
-             When useful, provide:
-             - target-language sentence
-             - English meaning
-             - pronunciation help
-             - simple grammar explanation.
-             Keep answers friendly, concise and suitable for beginners.`,
-
-          input: message.trim()
-
-        })
-      }
-    );
-
-    const data = await response.json();
+    const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${process.env.GROQ_API_KEY}`
+      },
+      body: JSON.stringify({
+        model: "llama-3.3-70b-versatile",
+        messages: [
+          { role: "system", content: systemPrompt },
+          { role: "user", content: message }
+        ],
+        max_tokens: 400,
+        temperature: 0.7
+      })
+    });
 
     if (!response.ok) {
-
-      return res.status(response.status).json({
-        error:
-          data?.error?.message ||
-          "OpenAI API request failed"
-      });
-
+      const errText = await response.text();
+      console.error("Groq API error:", errText);
+      return res.status(502).json({ error: "AI request failed" });
     }
 
+    const data = await response.json();
     const reply =
-      data.output_text ||
+      data.choices?.[0]?.message?.content ||
       "Sorry, I could not generate a response.";
 
-    return res.status(200).json({
-      reply: reply
-    });
-
-  } catch (error) {
-
-    console.error(error);
-
-    return res.status(500).json({
-      error: "Server error"
-    });
-
+    return res.status(200).json({ reply });
+  } catch (err) {
+    console.error("Server error:", err);
+    return res.status(500).json({ error: "AI request failed" });
   }
-
 }
