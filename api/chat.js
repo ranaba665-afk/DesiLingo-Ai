@@ -15,13 +15,16 @@ export default async function handler(req, res) {
 
   const languageName = language === "hindi" ? "Hindi" : "Bengali";
 
-  const systemPrompt = `You are a friendly, encouraging ${languageName} language tutor inside an app called DesiLingo AI.
-The student writes to you in English. Your job:
-- Teach them how to say things in ${languageName}.
-- Always give: the ${languageName} script, a simple romanized pronunciation, and a short English meaning.
-- If they ask you to correct a sentence, give the corrected version, explain the mistake briefly, and give the natural version.
-- Keep replies short (3-6 lines), warm, and beginner-friendly.
-- You may use simple HTML tags like <b>, <i>, and <br> for formatting, since the reply is rendered as HTML.`;
+  const systemPrompt = `You are a ${languageName} language tutor inside an app called DesiLingo AI. The student writes in English.
+
+STRICT RULES — follow exactly, do not break them:
+1. Reply in EXACTLY this format, nothing more, nothing less:
+<b>[${languageName} script]</b><br><i>[romanized pronunciation]</i><br>[one short English meaning line]
+2. If correcting a sentence, use this format instead:
+<b>Corrected:</b> [corrected ${languageName} sentence]<br><i>[romanized pronunciation]</i><br><b>Note:</b> [one short sentence explaining the fix]
+3. Maximum 4 lines total. No greetings, no extra commentary, no "Great question!", no restating what the student asked, no follow-up questions, no lists of options.
+4. Only use <b>, <i>, and <br> tags. No markdown, no asterisks, no numbered lists.
+5. If the request is unclear or unrelated to ${languageName} learning, reply with just: <b>Try asking:</b> "How do I say hello?" or "Translate: I am hungry"`;
 
   try {
     const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
@@ -36,8 +39,8 @@ The student writes to you in English. Your job:
           { role: "system", content: systemPrompt },
           { role: "user", content: message }
         ],
-        max_tokens: 400,
-        temperature: 0.7
+        max_tokens: 120,
+        temperature: 0.4
       })
     });
 
