@@ -39,8 +39,9 @@ STRICT RULES — follow exactly, do not break them:
           { role: "system", content: systemPrompt },
           { role: "user", content: message }
         ],
-        max_tokens: 120,
-        temperature: 0.4
+        max_tokens: 300,
+        temperature: 0.4,
+        reasoning_effort: "low"
       })
     });
 
@@ -51,9 +52,14 @@ STRICT RULES — follow exactly, do not break them:
     }
 
     const data = await response.json();
+    const choice = data.choices?.[0];
     const reply =
-      data.choices?.[0]?.message?.content ||
-      "Sorry, I could not generate a response.";
+      choice?.message?.content?.trim() ||
+      "Sorry, I could not generate a response. Please try rephrasing your question.";
+
+    if (!choice?.message?.content?.trim()) {
+      console.error("Empty content. finish_reason:", choice?.finish_reason, "full:", JSON.stringify(data));
+    }
 
     return res.status(200).json({ reply });
   } catch (err) {
